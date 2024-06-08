@@ -66,15 +66,45 @@ let studentList = [
 
 //4. HARD Question - You have to write a function that has the highest number of occurrences
 // [ 20, 4, -10, 4, 11, 20, 4, 2]; // 4
-
+function highestOccurrence(arr) {
+  const countDict = {};
+  arr.forEach(num => {
+      countDict[num] = (countDict[num] || 0) + 1;
+  });
+  let maxCount = 0;
+  let mostFrequent = null;
+  for (const num in countDict) {
+      if (countDict[num] > maxCount) {
+          maxCount = countDict[num];
+          mostFrequent = Number(num);
+      }
+  }
+  return mostFrequent;
+}
 
 //5. You have to write a function that has to find a number which is unique in the array (I.e Only occured once)
 // [20, 20, 11, 4, 11, 20, 2, 4]
-
-
-// aba abba  abca  acca a 
+function findUnique(arr) {
+  const countDict = {};
+  arr.forEach(num => {
+      countDict[num] = (countDict[num] || 0) + 1;
+  });
+  for (const num in countDict) {
+      if (countDict[num] === 1) {
+          return Number(num);
+      }
+  }
+  return null;
+}
 //6. You have an arryay of palindromes and not palindromes,  and you have to return only palindromes array
 
 // ['abc', 'aba', 'ccc', 'dca', 'a']
 
 // ['aba', 'ccc', 'a']
+function isPalindrome(str) {
+  const reversed = str.split('').reverse().join('');
+  return str === reversed;
+}
+function filterPalindromes(arr) {
+  return arr.filter(isPalindrome);
+}
